@@ -81,19 +81,35 @@ Thank you for your attention. Next week, we'll dive deeper into specific algorit
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-accent/5 to-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10">
       <Header />
       
-      <main className="container py-8 space-y-8">
+      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 max-w-7xl">
         {/* Hero Section */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            AI Lecture Assistant
+        <div className="text-center space-y-6 pt-8 animate-fade-in-up">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
+            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
+              AI-Powered
+            </span>{" "}
+            <span className="text-foreground">Learning</span>
           </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Transform YouTube lectures into intelligent summaries using advanced AI models. 
-            Extract key insights, generate transcripts, and make learning more efficient.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Transform any YouTube lecture into comprehensive summaries and searchable transcripts using advanced AI models
           </p>
+          <div className="flex justify-center items-center gap-8 text-sm text-muted-foreground mt-8">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
+              <span>AI-Powered</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
+              <span>Fast Processing</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-primary rounded-full"></div>
+              <span>Accurate Results</span>
+            </div>
+          </div>
         </div>
 
         {/* Tool Interface */}
