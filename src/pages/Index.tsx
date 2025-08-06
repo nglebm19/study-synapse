@@ -81,47 +81,39 @@ Thank you for your attention. Next week, we'll dive deeper into specific algorit
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-accent/10">
+    <div className="min-h-screen bg-gradient-hero overflow-hidden">
       <Header />
       
-      <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-16 max-w-7xl">
-        {/* Hero Section */}
-        <div className="text-center space-y-6 pt-8 animate-fade-in-up">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-primary via-primary to-primary/80 bg-clip-text text-transparent">
-              AI-Powered
-            </span>{" "}
-            <span className="text-foreground">Learning</span>
+      <main className="relative min-h-screen flex flex-col items-center justify-center px-6">
+        {/* Main Hero Content */}
+        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white">
+            Create summaries with{" "}
+            <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
+              Synapse
+            </span>
           </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Transform any YouTube lecture into comprehensive summaries and searchable transcripts using advanced AI models
+          <p className="text-xl sm:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Transform any YouTube lecture into comprehensive summaries using advanced AI models
           </p>
-          <div className="flex justify-center items-center gap-8 text-sm text-muted-foreground mt-8">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full"></div>
-              <span>AI-Powered</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full"></div>
-              <span>Fast Processing</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-primary rounded-full"></div>
-              <span>Accurate Results</span>
-            </div>
+          
+          {/* Centered Tool Interface */}
+          <div className="pt-8">
+            <ToolInterface onGenerate={handleGenerate} isLoading={isLoading} />
           </div>
         </div>
 
-        {/* Tool Interface */}
-        <ToolInterface onGenerate={handleGenerate} isLoading={isLoading} />
-
-        {/* Results Display */}
-        <ResultsDisplay 
-          isLoading={isLoading}
-          loadingStep={loadingStep}
-          results={results}
-          error={error}
-        />
+        {/* Results Display - Only show when there's content */}
+        {(isLoading || results || error) && (
+          <div className="w-full max-w-6xl mx-auto mt-16 px-4">
+            <ResultsDisplay 
+              isLoading={isLoading}
+              loadingStep={loadingStep}
+              results={results}
+              error={error}
+            />
+          </div>
+        )}
       </main>
     </div>
   );
