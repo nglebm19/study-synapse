@@ -8,44 +8,36 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Synapse Brand Colors - Light Mode */
-    --background: 249 250 251; /* Clean off-white */
-    --foreground: 31 41 55; /* Dark readable gray */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 
-    --card: 255 255 255; /* Pure white for cards */
-    --card-foreground: 31 41 55;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
 
-    --popover: 255 255 255;
-    --popover-foreground: 31 41 55;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 236 72% 79%; /* Vibrant purple-blue accent */
-    --primary-foreground: 255 255 255;
+    --primary: 263 70% 50%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 248 250 252;
-    --secondary-foreground: 71 85 105;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 248 250 252;
-    --muted-foreground: 100 116 139;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 243 244 246;
-    --accent-foreground: 31 41 55;
+    --accent: 263 70% 95%;
+    --accent-foreground: 263 70% 15%;
 
-    --destructive: 239 68% 68%;
-    --destructive-foreground: 248 250 252;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 229 231 235;
-    --input: 229 231 235;
-    --ring: 236 72% 79%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 263 70% 50%;
 
-    /* Synapse Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(237 70% 30%) 0%, hsl(260 60% 40%) 35%, hsl(280 70% 50%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(236 72% 79%), hsl(250 70% 75%));
-    --gradient-card: linear-gradient(135deg, hsl(255 255 255) 0%, hsl(248 250 252) 100%);
-    --gradient-accent: linear-gradient(45deg, hsl(243 244 246), hsl(248 250 252));
-    
-    /* Success colors */
-    --success: 34 197 94;
-    --success-foreground: 255 255 255;
+    --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(280 70% 60%));
+    --gradient-bg: linear-gradient(180deg, hsl(0 0% 100%), hsl(263 70% 98%));
     
     --radius: 0.75rem;
 
@@ -67,40 +59,33 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Synapse Brand Colors - Dark Mode */
-    --background: 13 17 23; /* Very dark blue-black */
-    --foreground: 230 237 243; /* Soft off-white */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 22 27 34; /* Slightly lighter dark gray for depth */
-    --card-foreground: 230 237 243;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 22 27 34;
-    --popover-foreground: 230 237 243;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 236 72% 79%; /* Same vibrant accent */
-    --primary-foreground: 13 17 23;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
 
-    --secondary: 30 41 59;
-    --secondary-foreground: 230 237 243;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 30 41 59;
-    --muted-foreground: 148 163 184;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 30 41 59;
-    --accent-foreground: 230 237 243;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 220 38% 46%;
-    --destructive-foreground: 230 237 243;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 30 41 59;
-    --input: 30 41 59;
-    --ring: 236 72% 79%;
-
-    /* Dark mode gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(220 70% 10%) 0%, hsl(237 70% 15%) 35%, hsl(260 60% 20%) 100%);
-    --gradient-primary: linear-gradient(135deg, hsl(236 72% 79%), hsl(250 70% 75%));
-    --gradient-card: linear-gradient(135deg, hsl(22 27 34) 0%, hsl(30 41 59) 100%);
-    --gradient-accent: linear-gradient(45deg, hsl(30 41 59), hsl(22 27 34));
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -118,42 +103,6 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground font-inter antialiased;
-    background: var(--gradient-hero);
-    min-height: 100vh;
-  }
-  
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom loading animation */
-  @keyframes fade-in-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes pulse-scale {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-  }
-  
-  .animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out;
-  }
-  
-  .animate-pulse-scale {
-    animation: pulse-scale 2s ease-in-out infinite;
+    @apply bg-background text-foreground;
   }
 }

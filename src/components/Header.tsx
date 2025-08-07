@@ -1,37 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { Brain } from "lucide-react";
 
 const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 w-full bg-transparent">
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <div className="flex items-center">
-            <button 
-              onClick={() => navigate("/")}
-              className="text-2xl font-bold text-white hover:text-white/90 transition-colors duration-200"
-            >
-              Synapse
-            </button>
-          </div>
-          
-          <div className="flex items-center space-x-3">
-            <Button 
-              variant="ghost" 
-              className="text-white/90 hover:text-white hover:bg-white/10 transition-colors duration-200"
-              onClick={() => navigate("/auth")}
-            >
-              Login
-            </Button>
-            <Button 
-              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-200"
-              onClick={() => navigate("/auth")}
-            >
-              Sign Up
-            </Button>
-          </div>
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <Brain className="h-8 w-8 text-primary" />
+          <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+            AI Lecture Assistant
+          </h1>
+        </div>
+        
+        <div className="flex items-center space-x-4">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate("/auth")}
+            className="text-sm font-medium"
+          >
+            Login
+          </Button>
+          <Button 
+            onClick={() => navigate("/auth")}
+            className="text-sm font-medium bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary"
+          >
+            Sign Up
+          </Button>
         </div>
       </div>
     </header>

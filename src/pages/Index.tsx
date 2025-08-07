@@ -81,39 +81,31 @@ Thank you for your attention. Next week, we'll dive deeper into specific algorit
   };
 
   return (
-    <div className="min-h-screen bg-gradient-hero overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-background via-accent/5 to-background">
       <Header />
       
-      <main className="relative min-h-screen flex flex-col items-center justify-center px-6">
-        {/* Main Hero Content */}
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in-up">
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white">
-            Create summaries with{" "}
-            <span className="bg-gradient-to-r from-white to-white/80 bg-clip-text text-transparent">
-              Synapse
-            </span>
+      <main className="container py-8 space-y-8">
+        {/* Hero Section */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+            AI Lecture Assistant
           </h1>
-          <p className="text-xl sm:text-2xl text-white/80 max-w-2xl mx-auto leading-relaxed">
-            Transform any YouTube lecture into comprehensive summaries using advanced AI models
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Transform YouTube lectures into intelligent summaries using advanced AI models. 
+            Extract key insights, generate transcripts, and make learning more efficient.
           </p>
-          
-          {/* Centered Tool Interface */}
-          <div className="pt-8">
-            <ToolInterface onGenerate={handleGenerate} isLoading={isLoading} />
-          </div>
         </div>
 
-        {/* Results Display - Only show when there's content */}
-        {(isLoading || results || error) && (
-          <div className="w-full max-w-6xl mx-auto mt-16 px-4">
-            <ResultsDisplay 
-              isLoading={isLoading}
-              loadingStep={loadingStep}
-              results={results}
-              error={error}
-            />
-          </div>
-        )}
+        {/* Tool Interface */}
+        <ToolInterface onGenerate={handleGenerate} isLoading={isLoading} />
+
+        {/* Results Display */}
+        <ResultsDisplay 
+          isLoading={isLoading}
+          loadingStep={loadingStep}
+          results={results}
+          error={error}
+        />
       </main>
     </div>
   );
