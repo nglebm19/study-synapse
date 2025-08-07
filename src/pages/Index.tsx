@@ -88,7 +88,7 @@ Thank you for your attention. Next week, we'll dive deeper into specific algorit
         {/* Hero Section */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
-            AI Lecture Assistant
+            Synapse
           </h1>
           <p className="text-xl text-muted-foreground leading-relaxed">
             Transform YouTube lectures into intelligent summaries using advanced AI models. 

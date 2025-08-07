@@ -132,10 +132,13 @@ const Dashboard = () => {
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div 
+            className="flex items-center space-x-2 cursor-pointer" 
+            onClick={() => navigate("/")}
+          >
             <Brain className="h-8 w-8 text-primary" />
             <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
-              AI Lecture Assistant
+              Synapse
             </h1>
           </div>
           
@@ -143,9 +146,6 @@ const Dashboard = () => {
             <span className="text-sm text-muted-foreground">
               Welcome, {user?.email}
             </span>
-            <Button variant="ghost" onClick={() => navigate("/")} className="text-sm">
-              ← Home
-            </Button>
             <Button variant="outline" onClick={handleSignOut} className="text-sm">
               <LogOut className="mr-2 h-4 w-4" />
               Sign Out
