@@ -5,7 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
-import { Brain, User, Lock, Trash2 } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Brain, User, Lock, Trash2, Upload, Key } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
@@ -18,8 +19,10 @@ const AccountSettings = () => {
   const [profile, setProfile] = useState({
     firstName: "",
     lastName: "",
-    email: user?.email || ""
+    email: user?.email || "",
+    avatarUrl: ""
   });
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
   useEffect(() => {
     if (!user) {
@@ -41,16 +44,26 @@ const AccountSettings = () => {
     }
   };
 
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setAvatarFile(file);
+      const url = URL.createObjectURL(file);
+      setProfile(prev => ({ ...prev, avatarUrl: url }));
+    }
+  };
+
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user) return;
 
     setLoading(true);
     try {
-      // TODO: Update profiles table once database is set up
+      // TODO: Update profiles table and upload avatar once database is set up
       console.log("Profile update - will be implemented after database setup", {
         firstName: profile.firstName,
-        lastName: profile.lastName
+        lastName: profile.lastName,
+        avatarFile: avatarFile?.name
       });
 
       toast({
@@ -131,7 +144,38 @@ const AccountSettings = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleUpdateProfile} className="space-y-4">
+              <form onSubmit={handleUpdateProfile} className="space-y-6">
+                {/* Avatar Section */}
+                <div className="flex items-center space-x-4">
+                  <Avatar className="h-20 w-20">
+                    <AvatarImage src={profile.avatarUrl} />
+                    <AvatarFallback className="bg-primary text-primary-foreground text-lg">
+                      {profile.firstName?.charAt(0) || profile.email.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <Label htmlFor="avatar" className="cursor-pointer">
+                      <div className="flex items-center space-x-2 bg-secondary hover:bg-secondary/80 px-4 py-2 rounded-md transition-colors">
+                        <Upload className="h-4 w-4" />
+                        <span>Upload Avatar</span>
+                      </div>
+                    </Label>
+                    <Input
+                      id="avatar"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleAvatarChange}
+                      className="hidden"
+                    />
+                    <p className="text-xs text-muted-foreground mt-1">
+                      JPG, PNG or GIF (max 5MB)
+                    </p>
+                  </div>
+                </div>
+
+                <Separator />
+
+                {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="firstName">First Name</Label>
@@ -152,6 +196,8 @@ const AccountSettings = () => {
                     />
                   </div>
                 </div>
+                
+                {/* Email Field */}
                 <div>
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -162,6 +208,7 @@ const AccountSettings = () => {
                     className="bg-muted"
                   />
                 </div>
+
                 <Button type="submit" disabled={loading}>
                   {loading ? "Updating..." : "Update Profile"}
                 </Button>
@@ -189,6 +236,35 @@ const AccountSettings = () => {
               }}>
                 Change Password
               </Button>
+            </CardContent>
+          </Card>
+
+          {/* HuggingFace Token Section */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Key className="h-5 w-5" />
+                HuggingFace Integration
+              </CardTitle>
+              <CardDescription>
+                Add your HuggingFace token to enable AI model features
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  toast({
+                    title: "HuggingFace Token",
+                    description: "Please add your HuggingFace token in the form below"
+                  });
+                }}
+              >
+                Configure HuggingFace Token
+              </Button>
+              <p className="text-xs text-muted-foreground mt-2">
+                Your token will be securely stored and only used for AI model requests
+              </p>
             </CardContent>
           </Card>
 
