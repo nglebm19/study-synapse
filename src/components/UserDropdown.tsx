@@ -56,7 +56,10 @@ export const UserDropdown = () => {
           <LayoutDashboard className="mr-2 h-4 w-4" />
           <span>Dashboard</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => navigate("/account")}>
+        <DropdownMenuItem onClick={(e) => {
+          e.preventDefault();
+          navigate("/account");
+        }}>
           <Settings className="mr-2 h-4 w-4" />
           <span>Account Settings</span>
         </DropdownMenuItem>
