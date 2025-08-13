@@ -12,17 +12,22 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useProfile } from "@/hooks/useProfile";
 import { User, Settings, LayoutDashboard, LogOut, Sun, Moon } from "lucide-react";
 
 export const UserDropdown = () => {
   const { user, signOut } = useAuth();
   const { theme, toggleTheme } = useTheme();
+  const { profileData } = useProfile();
   const navigate = useNavigate();
 
   if (!user) return null;
 
-  const getInitials = (email: string) => {
-    return email.substring(0, 2).toUpperCase();
+  const getInitials = () => {
+    if (profileData.displayName) {
+      return profileData.displayName.charAt(0).toUpperCase();
+    }
+    return user?.email?.substring(0, 2).toUpperCase() || "U";
   };
 
   const handleSignOut = async () => {
@@ -35,9 +40,9 @@ export const UserDropdown = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/placeholder-avatar.jpg" />
+            <AvatarImage src={profileData.avatarUrl || "/placeholder-avatar.jpg"} />
             <AvatarFallback className="bg-primary text-primary-foreground">
-              {getInitials(user.email || "U")}
+              {getInitials()}
             </AvatarFallback>
           </Avatar>
         </Button>
