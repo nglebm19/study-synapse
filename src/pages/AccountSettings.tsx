@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,11 +9,14 @@ import { Separator } from "@/components/ui/separator";
 import { Upload, User, Mail, AtSign, Key } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useProfile } from "@/hooks/useProfile";
+import { useAuth } from "@/hooks/useAuth";
 import Header from "@/components/Header";
 
 const AccountSettings = () => {
   const { toast } = useToast();
   const { profileData, updateProfile, updateAvatar } = useProfile();
+  const { user } = useAuth();
+  const [isEmailEditable, setIsEmailEditable] = useState(false);
 
   const handleSave = () => {
     toast({
@@ -129,9 +133,17 @@ const AccountSettings = () => {
                   id="email"
                   type="email"
                   placeholder="Enter your email address"
-                  value={profileData.email}
+                  value={user?.email || ""}
+                  disabled={!isEmailEditable}
                   onChange={(e) => updateProfile({ email: e.target.value })}
                 />
+                <button
+                  type="button"
+                  onClick={() => setIsEmailEditable(!isEmailEditable)}
+                  className="text-xs text-primary hover:text-primary/80 transition-colors"
+                >
+                  {isEmailEditable ? "Cancel edit" : "Edit email"}
+                </button>
               </div>
 
               <div className="space-y-2">
